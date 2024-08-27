@@ -1,0 +1,88 @@
+/* JobCard.css */
+
+.all-jobs-container {
+  background-color: rgb(238, 238, 238);
+  padding: 1rem;
+  color: black;
+}
+
+.job-card {
+  border: 1px solid #ddd;
+  padding: 16px;
+  margin: 16px;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+.job-card h1 {
+  margin: 10px;
+}
+
+.skills-req {
+  font-size: 15px;
+  color: rgb(73, 73, 73);
+}
+
+
+.skills-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 16px; 
+}
+
+.skill-box {
+  background-color: #c7c7c7;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 14px; 
+}
+
+/*for the alljobs*/
+.job-card-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Ensure 2 cards per row */
+  gap: 16px;
+}
+
+.search-card-container {
+  display: grid;
+  width: 80%;
+  grid-template-columns: repeat(2, 1fr); /* Ensure 2 cards per row */
+  gap: 16px;
+}
+
+/* Responsive design adjustments */
+@media (max-width: 1000px) {
+  .search-card-container {
+    width:300px;
+    grid-template-columns: 1fr; /* Single column layout on smaller screens */
+  }
+}
+
+/* Responsive design adjustments */
+@media (max-width: 700px) {
+  .job-card-container {
+    grid-template-columns: 1fr; /* Single column layout on smaller screens */
+  }
+}
+
+/* Remove default visited link color */
+a:link, a:visited {
+  color: #000000; /* Replace with your desired color */
+}
+
+/* Hover state for links */
+a:hover {
+  color: #233c57; /* Replace with your hover color */ 
+}
+
+/* Active link state (when clicked) */
+a:active {
+  color: #000000; /* Replace with your active color */
+}
+
+.view-jobs {
+  margin-top: 20px;
+}

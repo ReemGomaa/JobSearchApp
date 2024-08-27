@@ -1,0 +1,35 @@
+/*Header.css - completed*/
+
+.header {
+    background-color: white;
+    padding: 1rem;
+    color: black;
+    font-weight: bold;
+    border-bottom: 0.1rem solid;
+  }
+  
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+  }
+  
+  .nav-links {
+    list-style: none;
+    display: flex;
+  }
+  
+  .nav-links li {
+    margin: 0 1rem;
+  }
+  
+  .nav-links a {
+    color: black;
+    text-decoration: none;
+    font-weight: 500;
+  }
+  
+  .nav-links a:hover {
+    text-decoration: underline;
+  }

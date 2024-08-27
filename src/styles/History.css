@@ -1,0 +1,63 @@
+/* History.css */
+
+.history-container {
+  background-color: #f9f9f9;
+  padding: 20px;
+  margin-top: 400px;
+  box-shadow: -2px 0px 5px rgba(0, 0, 0, 0.1);
+  position: absolute; /* Fixed positioning */
+  right: 20px;
+  top: 100px;
+  width: 20%; /* Always take 20% of the viewport width */
+  min-width: 100px; /* Minimum width to prevent it from being too small */
+  max-width: 200px; /* Maximum width to avoid overflow */
+  overflow-y: auto; /* Add scroll if content overflows */
+  z-index: 1000; /* Ensure it stays above other content */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Space items evenly */
+}
+
+.clear-history-button {
+  background-color: #e0e0e0; /* Light grey background */
+  color: #333; /* Dark text for contrast */
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+  font-size: 16px;
+  margin-top: auto; /* Push the button to the bottom */
+  text-align: center;
+}
+
+.clear-history-button:hover {
+  background-color: #c0c0c0; /* Darker grey on hover */
+}
+
+.history-title {
+  margin-bottom: 10px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.history-list {
+  list-style-type: none; /* Remove bullet points */
+  padding: 0; /* Remove default padding */
+  margin: 0; /* Remove default margin */
+  flex-grow: 1; /* Allow the list to grow and fill the space */
+}
+
+.history-list li {
+  margin-bottom: 5px; /* Space between list items */
+}
+
+.history-list a {
+  text-decoration: none;
+  color: #424242;
+  font-weight: bold;
+}
+
+.history-list a:hover {
+  text-decoration: underline;
+}

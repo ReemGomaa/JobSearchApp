@@ -1,0 +1,51 @@
+ .req-skills-container {
+    margin: 50px;
+    padding: 15px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background-color: #ffffff;
+}
+
+
+ .req-skills-title {
+    text-align: center;
+    font-weight: bold;
+    margin: 25px;
+}
+
+.req-skills-dis {
+    font-weight: bold;
+    margin-left: 25px;
+}
+
+.req-skills-box {
+    background-color: #f0f0f0; /* Light grey background for the box */
+    padding: 20px; /* Space inside the box */
+    border-radius: 8px; /* Rounded corners for the box */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    margin: 20px 0; /* Margin around the box */
+  }
+  
+  .req-skills-name {
+    font-size: 18px; /* Title font size */
+    margin-bottom: 10px; /* Space below the title */
+  }
+  
+  .req-skills-item {
+    display: inline; /* Display items in line */
+    margin-right: 40px; /* Space between items */
+  }
+  
+  .req-skills-item:last-child {
+    margin-right: 0; /* Remove margin from the last item */
+  }
+
+  ul {
+    list-style-type: none; /* Remove bullet points */
+    padding: 0; /* Remove default padding */
+    margin: 0; /* Remove default margin */
+  }
+  
+  li {
+    margin-bottom: 10px; /* Space between list items */
+  }
