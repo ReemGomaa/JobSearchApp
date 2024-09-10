@@ -9,7 +9,7 @@ const History: React.FC = () => {
   const history = useSelector((state: RootState) => state.history.history);
   const dispatch = useDispatch();
 
-  // Function to extract the query from the URL
+  //Function to extract the query from the URL
   const getQueryFromURL = (url: string) => {
     const urlParams = new URLSearchParams(url.split('?')[1]);
     return urlParams.get('query') || '';

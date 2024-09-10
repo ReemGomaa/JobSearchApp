@@ -2,6 +2,7 @@ import React, { useState, useEffect, memo } from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/JobCard.css'; 
 
+//interface for the job card
 interface JobCardProps {
   title: string;
   jobId: string;
@@ -10,7 +11,8 @@ interface JobCardProps {
 
 const JobCard: React.FC<JobCardProps> = memo(({ title, jobId, skills }) => {
   const [skillNames, setSkillNames] = useState<string[]>([]);
-
+  
+  //get the skill name from the skillid
   useEffect(() => {
     const fetchSkillNames = async () => {
       try {

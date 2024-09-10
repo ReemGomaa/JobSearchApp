@@ -1,5 +1,3 @@
-/*AllJobs.tsx- UI done functionality done(except rerendering bug) */
-
 import React, { useEffect, useState, useRef, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchJobs } from '../store/jobsSlice';
@@ -9,9 +7,10 @@ import { RootState } from '../store/store';
 import { AppDispatch } from '../store/store';
 import Header from '../components/Header';
 import { Job } from '../store/jobsSlice';
-import '../styles/JobCard.css'; // Import the CSS file
-import '../styles/SearchBox.css'; // Import the CSS file 
+import '../styles/JobCard.css'; 
+import '../styles/SearchBox.css'; 
 
+// Memoized JobCard to avoid unnecessary re-renders
 const JobCardMemo = React.memo(({ job }: { job: Job }) => (
   <JobCard
     key={job.id}
@@ -39,60 +38,68 @@ const AllJobs: React.FC = () => {
   const cursorRef = useRef<number>(0);
   const loadingRef = useRef<boolean>(false);
 
+  // Initial job fetch (on mount only)
   useEffect(() => {
     dispatch(fetchJobs({ cursor: cursorRef.current, limit: 12 }));
   }, [dispatch]);
 
-  const handleScroll = useCallback(() => {
-    if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
-      if (!loadingRef.current && jobs.length < totalJobs) {
-        loadingRef.current = true;
-        cursorRef.current = jobs.length;
-        dispatch(fetchJobs({ cursor: cursorRef.current, limit: 12 }))
-          .then(() => {
-            loadingRef.current = false;
-          });
+  // Scroll handler for loading more jobs when the user scrolls to the bottom
+  const handleScroll = useCallback(
+    debounce(() => {
+      if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 100) {
+        // Load more jobs if we haven't reached the total number of jobs yet and it's not already loading
+        if (jobs.length < totalJobs && !loadingRef.current) {
+          loadingRef.current = true;
+          cursorRef.current = jobs.length;
+          dispatch(fetchJobs({ cursor: cursorRef.current, limit: 12 }))
+            .then(() => {
+              loadingRef.current = false;
+            });
+        }
       }
-    }
-  }, [dispatch, jobs.length, totalJobs]);
+    }, 200), // Debouncing the scroll handler to avoid excessive calls
+    [dispatch, jobs.length, totalJobs]
+  );
 
+  // Adding and removing scroll event listener
   useEffect(() => {
-    const debouncedHandleScroll = debounce(handleScroll, 300);
-    window.addEventListener('scroll', debouncedHandleScroll);
-    return () => window.removeEventListener('scroll', debouncedHandleScroll);
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
   }, [handleScroll]);
 
-  const jobsToDisplay = searchResults.length > 0 ? searchResults : jobs;
-
+  // Update search box height after jobs or search results change
   useEffect(() => {
     if (searchBoxRef.current) {
       setSearchBoxHeight(searchBoxRef.current.offsetHeight);
     }
   }, [searchResults, jobs]);
 
-  if (status === 'loading') return <div>Loading...</div>;
+  
+
+  // Conditional rendering based on the loading status
+  if (status === 'loading' && jobs.length === 0) return <div>Loading...</div>;
   if (status === 'failed') return <div>Error: {error}</div>;
   if (jobs.length === 0) return <div>No jobs found.</div>;
 
   return (
     <div>
       <Header />
-        
-      <div className = "search-box-border">
-          <div ref={searchBoxRef}>
-            <SearchBox />
-          </div>
-      </div>
-         
-          <div className="all-jobs-container">
-            <h2 >Showing {jobs.length} of {totalJobs} Jobs Found</h2>
-            <div className="job-card-container">
-              {jobsToDisplay.map((job) => (
-                <JobCardMemo key={job.id} job={job} />
-              ))}
-            </div>
+      <div className="search-box-border">
+        <div ref={searchBoxRef}>
+          <SearchBox />
         </div>
-      
+      </div>
+      <div className="all-jobs-container">
+        <h2>Showing {jobs.length} of {totalJobs} Jobs Found</h2>
+        <div className="job-card-container">
+          {jobs.map((job) => (
+            <JobCardMemo key={job.id} job={job} />
+          ))}
+        </div>
+      </div>
     </div>
   );
 };

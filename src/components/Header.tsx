@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/Header.css';
 
+//allow children in the header component
 interface HeaderProps {
   children?: React.ReactNode; 
 }

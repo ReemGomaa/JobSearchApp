@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import AllJobs from './pages/AllJobs'; // Adjust the import path
 import SearchResults from './pages/SearchResults'; // Adjust the import path
 import JobDetails from './pages/JobDetail'; // Adjust the import path
-import History from './components/History';
 import SkillDetails from './pages/SkillDetails';
 import HomePage from './pages/HomePage';
 

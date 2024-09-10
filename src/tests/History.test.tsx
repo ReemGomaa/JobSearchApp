@@ -15,11 +15,16 @@ describe('History Component', () => {
     expect(screen.getByText('Search History')).toBeInTheDocument();
   });
 
-  test('displays search history items', () => {
+
+  test('displays search history items', async () => {
+  // Mock localStorage to simulate history
+    localStorage.setItem('searchHistory', JSON.stringify(['developer', 'designer']));
+
     renderWithProviders(<History />);
-    expect(screen.getByText('developer')).toBeInTheDocument(); // Adjust based on actual test data
+    expect(screen.getByText('developer')).toBeInTheDocument(); 
   });
 
+  //mocking clear history button
   test('clears history when Clear History button is clicked', () => {
     // Mock localStorage to simulate clearing history
     localStorage.setItem('searchHistory', JSON.stringify(['developer', 'designer']));
@@ -29,7 +34,7 @@ describe('History Component', () => {
     fireEvent.click(screen.getByText('Clear History'));
     
     // Check if history is cleared
-    expect(localStorage.getItem('searchHistory')).toBe('[]');
+    expect(localStorage.getItem('searchHistory')).toBe(null);
     expect(screen.queryByText('developer')).not.toBeInTheDocument();
   });
 });

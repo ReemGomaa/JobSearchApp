@@ -14,7 +14,7 @@ const SkillCard: React.FC<SkillCardProps> = ({ title, skillId, jobs }) => {
 
   useEffect(() => {
     const fetchJobNames = async () => {
-      setError(null); // Reset error state before making a request
+      setError(null); //Reset error state before making a request
       try {
         const names = await Promise.all(
           jobs.map(async (job) => {
